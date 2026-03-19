@@ -1,0 +1,27 @@
+name: End-to-End Database and Asset Pipeline
+
+on:
+  workflow_dispatch: # Allows you to trigger the whole sequence manually
+  push:
+    branches: [main]
+
+jobs:
+  # --- Stage 1: Parallel Jobs ---
+  # These two will start at the exact same time.
+  setup-db:
+    runs-on: eks-runner-set
+    uses: NishaJalaja/postgres-employee-app/.github/workflows/deploy.yml@main
+    secrets: inherit # Pass EKS/AWS secrets to the called workflow
+
+  prepare-assets:
+    runs-on: eks-runner-set
+    uses: NishaJalaja/postgres-student-app/.github/workflows/deploy.yml@main
+    secrets: inherit
+
+  # --- Stage 2: Sequential Job (Depends on Stage 1) ---
+  # This job will only start once BOTH setup-db and prepare-assets succeed.
+  #main-deployment:
+    #needs: [setup-db, prepare-assets] 
+    #runs-on: eks-runner-set
+    #uses: owner/repo-c/.github/workflows/deploy.yml@main
+    #secrets: inherit
