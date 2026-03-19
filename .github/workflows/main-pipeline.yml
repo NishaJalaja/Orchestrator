@@ -8,12 +8,12 @@ on:
 jobs:
   # --- Stage 1: Parallel Jobs ---
   # These two will start at the exact same time.
-  setup-db:
+  employeedataload:
     #runs-on: eks-runner-set
     uses: NishaJalaja/postgres-employee-app/.github/workflows/deploy.yml@main
     secrets: inherit # Pass EKS/AWS secrets to the called workflow
 
-  prepare-assets:
+  studentdataload:
     #runs-on: eks-runner-set
     uses: NishaJalaja/postgres-student-app/.github/workflows/deploy.yml@main
     secrets: inherit
