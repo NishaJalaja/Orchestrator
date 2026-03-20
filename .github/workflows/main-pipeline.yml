@@ -13,7 +13,8 @@ jobs:
     uses: NishaJalaja/postgres-employee-app/.github/workflows/deploy.yml@main
     with:
       target_repo: 'NishaJalaja/postgres-employee-app'
-    secrets: GH_PAT: ${{ secrets.GH_PAT }}
+    secrets: 
+      GH_PAT: ${{ secrets.GH_PAT }}
 
   studentdataload:
     #runs-on: eks-runner-set
