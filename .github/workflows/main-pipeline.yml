@@ -19,7 +19,10 @@ jobs:
   studentdataload:
     #runs-on: eks-runner-set
     uses: NishaJalaja/postgres-student-app/.github/workflows/deploy.yml@main
-    secrets: inherit
+    with:
+      target_repo: 'NishaJalaja/postgres-student-app'
+    secrets: 
+      GH_PAT: ${{ secrets.GH_PAT }}
 
   # --- Stage 2: Sequential Job (Depends on Stage 1) ---
   # This job will only start once BOTH setup-db and prepare-assets succeed.
