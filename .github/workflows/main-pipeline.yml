@@ -11,7 +11,9 @@ jobs:
   employeedataload:
     #runs-on: eks-runner-set
     uses: NishaJalaja/postgres-employee-app/.github/workflows/deploy.yml@main
-    secrets: inherit # Pass EKS/AWS secrets to the called workflow
+    with:
+      target_repo: 'NishaJalaja/postgres-employee-app'
+    secrets: GH_PAT: ${{ secrets.GH_PAT }}
 
   studentdataload:
     #runs-on: eks-runner-set
