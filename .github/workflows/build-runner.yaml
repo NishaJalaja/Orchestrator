@@ -27,5 +27,5 @@ jobs:
           IMAGE_TAG: v1
         run: |
           # Build using the Dockerfile you created earlier
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile.runner .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f dockerfile.runner .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
